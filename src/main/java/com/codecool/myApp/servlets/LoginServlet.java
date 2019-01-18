@@ -11,7 +11,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet( HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
-        response.getWriter().write("<html><body><form name=\"loginForm\" method=\"post\" action=\"loginServlet\">\n" +
+        response.getWriter().write("<html><body><form name=\"loginForm\" method=\"post\">\n" +
                 "    Username: <input type=\"text\" name=\"username\"/> <br/>\n" +
                 "    Password: <input type=\"password\" name=\"password\"/> <br/>\n" +
                 "    <input type=\"submit\" value=\"Login\" />\n" +
@@ -24,6 +24,10 @@ public class LoginServlet extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
+        if (username.toUpperCase().equals(password.toUpperCase())) {
+            response.sendRedirect("/web");
+        }
 
     }
 }
