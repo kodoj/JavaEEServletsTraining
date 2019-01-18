@@ -17,9 +17,10 @@ public class WebServlet extends HttpServlet {
                           HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.getWriter().write("<html><body><form name=\"lotteryForm\" method=\"post\">\n" +
-                "    HELLO THERE, PREMIUM USER, GIVE US YOUR CREDIT CARD NUMBER AND WE WILL GENERATE LOTTO NUMBERS FOR YOU\n" +
-                "    Enter your Credit Card number (number without spaces): <input type=\"text\" name=\"number\"/> <br/>\n" +
+        response.getWriter().write("<html><body><form name=\"generatorForm\" method=\"post\">\n" +
+                "    HELLO THERE, PREMIUM USER, GIVE US YOUR CREDIT CARD NUMBER AND WE WILL GENERATE LOTTO NUMBERS FOR YOU</br>\n" +
+                "    Enter your Credit Card number (number without spaces):</br>" +
+                " <input type=\"text\" name=\"number\"/> <br/>\n" +
                 "    Lottery Type:\n" +
                 "    <input type=\"radio\" name=\"lottery\" value=\"mini\" />Mini Lotto (5 numbers)\n" +
                 "    <input type=\"radio\" name=\"lottery\" value=\"lotto\" />Lotto (6 numbers)\n" +

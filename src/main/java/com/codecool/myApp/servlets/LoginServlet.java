@@ -26,7 +26,9 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         if (username.toUpperCase().equals(password.toUpperCase())) {
-            response.sendRedirect("/web");
+            response.sendRedirect("/lotto-generator");
+        } else {
+            response.sendRedirect("/login");
         }
 
     }
