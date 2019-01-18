@@ -32,6 +32,23 @@ public class WebServlet extends HttpServlet {
 
         String cardNumber = request.getParameter("number");
         String lotteryType = request.getParameter("lottery");
+        PrintWriter writer = response.getWriter();
+
+        if(cardNumber == null || lotteryType == null) {
+            writer.write("<html><body>Sorry! you have to give us full information! :(");
+            return;
+        } else if (cardNumber.length() != 16) {
+            writer = response.getWriter();
+            writer.write("<html><body>That is not a valid credit card number, it's about your lottery win! " +
+                    "Man, give us your card information, what can you lose? :(</body></html>");
+            return;
+        }
+
+        lotteryEngine(response, cardNumber, lotteryType);
+    }
+
+    private void lotteryEngine(HttpServletResponse response, String cardNumber, String lotteryType) throws IOException {
+        PrintWriter writer;
         long number = 1;
         int loweredNumber = 1;
         int howManyNumbers;
@@ -60,7 +77,7 @@ public class WebServlet extends HttpServlet {
         for (int i = 0; i < howManyNumbers; i++) {
             tempResult = maxNumberValue + 1;
             Random random = new Random();
-            while (tempResult > maxNumberValue){
+            while (tempResult > maxNumberValue || superNumbers.contains(tempResult)){
                 tempResult = loweredNumber / (random.nextInt(100000) + 1);
             }
             superNumbers.set(i, tempResult);
@@ -68,7 +85,7 @@ public class WebServlet extends HttpServlet {
 
         response.setHeader("Content-Type", "text/html");
 
-        PrintWriter writer = response.getWriter();
+        writer = response.getWriter();
         writer.write("<html><body>CONGRATULATIONS, Your super numbers to play " +
                 lotteryType + " is: ");
 
